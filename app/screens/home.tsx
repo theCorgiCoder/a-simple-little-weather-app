@@ -16,15 +16,13 @@ const Home = () => {
         <CustomButton city={item.name} country={item.country} onPress={() => handleCityPress(item)} />
     )
 
-
-
     if (isLoading) {
         return <Text>Loading...</Text>;
     }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Weather Cities</Text>
+            <Text style={styles.title}>Choose a City:</Text>
             <FlatList
                 data={FEATURED_CITIES}
                 renderItem={renderCityData}

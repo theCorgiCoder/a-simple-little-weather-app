@@ -1,8 +1,9 @@
-import {View, Text, StyleSheet, ScrollView} from "react-native";
+import {View, Text, StyleSheet, ScrollView, Image} from "react-native";
 import {useLocalSearchParams} from "expo-router";
 import {useWeather} from "../../src/hooks/useWeather";
 import {useEffect} from "react";
 import { getKeyTimesPerDay, isToday, getTimeLabel } from '../../src/utils/dateUtils';
+import {getWeatherIconUrl} from '../../src/utils/constants'
 
 export default function Details() {
     const {
@@ -41,6 +42,11 @@ export default function Details() {
                     <Text style={styles.forecastDescription}>
                         {item.weather[0].description}
                     </Text>
+                    <Image
+                        source={{ uri: getWeatherIconUrl(item.weather[0].icon) }}
+                        style={styles.weatherIcon}
+                        resizeMode="contain"
+                    />
                 </View>
                 <Text style={styles.forecastTemp}>
                     {Math.round(item.main.temp)}°C
@@ -187,5 +193,9 @@ const styles = StyleSheet.create({
     error: {
         color: 'red',
         fontSize: 16,
+    },
+    weatherIcon: {
+        width: 40,
+        height: 40,
     },
 });
