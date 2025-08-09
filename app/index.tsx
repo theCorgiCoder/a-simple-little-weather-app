@@ -1,6 +1,6 @@
 import 'expo-router/entry';
 import { View } from 'react-native';
-import Home from './screens/home';
+import Home from "./screens/home";
 
 
 

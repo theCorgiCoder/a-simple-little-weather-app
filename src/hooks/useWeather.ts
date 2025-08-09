@@ -50,3 +50,5 @@ export const useWeather = (): UseWeatherProps => {
         clearError,
     };
 };
+
+export default useWeather;

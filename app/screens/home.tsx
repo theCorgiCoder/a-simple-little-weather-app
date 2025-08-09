@@ -1,19 +1,22 @@
 import {View, Text, StyleSheet, FlatList} from "react-native";
-import CustomButton from "../components/buttons/CustomButton";
+import CustomButton from "../../src/components/buttons/CustomButton";
 import {router} from "expo-router";
-import {useWeather} from "../hooks/useWeather";
-import {FEATURED_CITIES} from "../utils/constants";
+import {useWeather} from "../../src/hooks/useWeather";
+import {FEATURED_CITIES} from "../../src/utils/constants";
 
 const Home = () => {
-    const {isLoading, currentWeather} = useWeather();
-
-    const renderCityData = ({ item }: { item: { name: string; country: string } }) => (
-        <CustomButton city={item.name} country={item.country} onPress={handleCityPress} />
-    )
+    const {isLoading} = useWeather();
 
     const handleCityPress = (city: { name: string; country: string }) => {
+        console.log('Navigating with:', city);
         router.push(`/screens/details?city=${encodeURIComponent(city.name)}&countryCode=${city.country}`);
     };
+
+    const renderCityData = ({ item }: { item: { name: string; country: string } }) => (
+        <CustomButton city={item.name} country={item.country} onPress={() => handleCityPress(item)} />
+    )
+
+
 
     if (isLoading) {
         return <Text>Loading...</Text>;

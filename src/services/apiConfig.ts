@@ -6,3 +6,4 @@ export const WEATHER_CONFIG = {
         FORECAST: '/forecast',
     },
 }
+
