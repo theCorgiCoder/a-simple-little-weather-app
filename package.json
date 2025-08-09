@@ -1,7 +1,7 @@
 {
   "name": "a-simple-little-weather-app",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "scripts": {
     "start": "sigh/node_modules/.bin/expo start",
     "android": "sigh/node_modules/.bin/expo start --android",
