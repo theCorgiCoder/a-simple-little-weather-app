@@ -22,16 +22,16 @@ const CustomButton: React.FC<ButtonProps> = ({city, country, onPress}) => {
 
 const styles = StyleSheet.create({
     button: {
-        width: '100%',                    // Spans horizontally across screen
-        paddingVertical: 16,              // Vertical padding
-        paddingHorizontal: 20,            // Horizontal padding
-        backgroundColor: '#f8f9fa',       // Light background color
-        borderLeftWidth: 2,               // Left outline stroke
-        borderRightWidth: 2,              // Right outline stroke
-        borderLeftColor: '#007AFF',       // Outline color
-        borderRightColor: '#007AFF',      // Outline color
-        borderRadius: 8,                  // Rounded corners
-        marginVertical: 4,                // Space between buttons
+        width: '100%',
+        paddingVertical: 16,
+        paddingHorizontal: 20,
+        backgroundColor: '#f8f9fa',
+        borderLeftWidth: 2,
+        borderRightWidth: 2,
+        borderLeftColor: '#007AFF',
+        borderRightColor: '#007AFF',
+        borderRadius: 8,
+        marginVertical: 4,
 
         // Shadow for iOS
         shadowColor: '#000',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: '600',
         color: '#333',
-        textAlign: 'center',              // City name centered
+        textAlign: 'center',
     },
 });
 
