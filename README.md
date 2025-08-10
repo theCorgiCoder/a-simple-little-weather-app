@@ -26,6 +26,7 @@ a zipcode or city themselves but that would need a lot more logic to work out wi
 
 - **React Native** with Expo
 - **Expo & Expo Router** for quick app building in Expo Go App and file-based navigation
+- **Expo Go App** - if you want to test the application that way, otherwise use an emulator or physical device in Android Studio or Xcode(ios)
 - **TypeScript** for type safety
 - **OpenWeatherMap API** for weather data
 ## Getting Started
@@ -68,7 +69,7 @@ export const WEATHER_CONFIG = {
 ```bash
 npx expo start
 ```
-
+5. Make sure you have Expo Go App downloaded if you want to test on your current device easily. Otherwise you will need to have set up a emulator for either Android (Android Studio) or iOS(Xcode)
 ### Getting an API Key
 
 1. Sign up at [OpenWeatherMap](https://openweathermap.org/api)
@@ -89,7 +90,7 @@ The app includes weather for these cities by default:
 - London, United Kingdom
 - New York, United States
 - Tokyo, Japan
-- Sydney, Australia
+- etc.
 
 You can easily add more cities by updating the city list in `src/constants/cities.ts`.
 
