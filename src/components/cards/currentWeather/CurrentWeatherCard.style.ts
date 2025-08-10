@@ -29,13 +29,13 @@ export const cardStyles = StyleSheet.create({
     currentTemp: {
         fontSize: 48,
         fontWeight: 'bold',
-        color: '#F96E2A',
+        color: '#fff',
     },
     description: {
         fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'capitalize',
-        color: '#666',
+        color: '#001F3F',
         marginBottom: 10,
     },
     weatherIcon: {
@@ -46,6 +46,6 @@ export const cardStyles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'left',
-        color: '#666',
+        color: '#001F3F',
     }
 });

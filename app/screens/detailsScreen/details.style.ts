@@ -4,26 +4,25 @@ export const detailStyles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: "#C9E6F0",
+        backgroundColor: "#78B3CE",
     },
     forecastSection: {
         marginVertical: 20,
         padding: 15,
-        backgroundColor: '#f9f9f9',
+        backgroundColor: '#C9E6F0',
         borderRadius: 10,
     },
     forecastContainer: {
         gap: 5,
     },
     sectionTitle: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 15,
-        color: '#333',
+        color: '#213448',
     },
     separator: {
         height: 1,
-        backgroundColor: '#e0e0e0',
+        backgroundColor: '#3A6D8C',
         marginVertical: 8,
     },
     error: {
