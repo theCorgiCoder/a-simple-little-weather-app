@@ -2,7 +2,7 @@ import {View, Text, ScrollView, RefreshControl} from "react-native";
 import {useEffect, useState} from "react";
 import {useLocalSearchParams} from "expo-router";
 import {useWeather} from "../../../src/hooks/useWeather";
-import { getKeyTimesPerDay, isToday, getTimeLabel } from '../../../src/utils/dateUtils';
+import { getAllTodayAndTomorrowForecast, isToday, getActualTimeLabel } from '../../../src/utils/dateUtils';
 import {getWeatherIconUrl} from '../../../src/services/apiConfig'
 
 import CurrentWeatherCard from "../../../src/components/cards/currentWeather/CurrentWeatherCard";
@@ -52,19 +52,19 @@ const Details = () => {
         }
     };
 
-    const keyTimesForecast = forecast ? getKeyTimesPerDay(forecast.list) : [];
+    // Get ALL forecast times for today and tomorrow
+    const allForecast = forecast ? getAllTodayAndTomorrowForecast(forecast.list) : [];
 
-    // Separate today and tomorrow
-    const todayForecast = keyTimesForecast.filter(item => isToday(item.dt));
-    const tomorrowForecast = keyTimesForecast.filter(item => !isToday(item.dt));
+    const todayForecast = allForecast.filter(item => isToday(item.dt));
+    const tomorrowForecast = allForecast.filter(item => !isToday(item.dt));
 
-    const renderForecastItems = (items: typeof keyTimesForecast) => (
+    const renderForecastItems = (items: typeof allForecast) => (
         items.map((item, index) => (
             <View key={index}>
                 <ForecastCard
                     icon={getWeatherIconUrl(item.weather[0].icon)}
                     temp={item.main.temp}
-                    time={getTimeLabel(item.dt)}
+                    time={getActualTimeLabel(item.dt)}
                     description={item.weather[0].description}
                 />
                 {/* Add separator line (except for last item) */}

@@ -6,12 +6,6 @@ export const detailStyles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#C9E6F0",
     },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 20,
-    },
     forecastSection: {
         marginVertical: 20,
         padding: 15,
