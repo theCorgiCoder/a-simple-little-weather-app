@@ -1,14 +1,23 @@
 import 'expo-router/entry';
-import { View } from 'react-native';
-import Home from "./screens/home";
-
-
-
+import Home from "./screens/homeScreen/home";
+import {SafeAreaProvider, SafeAreaView} from "react-native-safe-area-context";
+import {StyleSheet} from "react-native";
 
 export default function Index() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Home />
-        </View>
+        <SafeAreaProvider>
+            <SafeAreaView style={style.container}>
+                <Home />
+            </SafeAreaView>
+        </SafeAreaProvider>
     );
 }
+
+const style = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#C9E6F0",
+    }
+})

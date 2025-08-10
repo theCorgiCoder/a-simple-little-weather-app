@@ -10,7 +10,7 @@ export default function RootLayout() {
                 }}
             />
             <Stack.Screen
-            name={"screens/details"}
+            name={"screens/detailsScreen/details"}
             options={{
                 title: 'City Weather Details:'
             }}/>

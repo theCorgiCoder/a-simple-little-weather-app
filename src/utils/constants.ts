@@ -9,6 +9,5 @@ export const FEATURED_CITIES = [
     { name: 'Berlin', country: 'DE' },
 ];
 
-export const getWeatherIconUrl = (iconCode: string) => {
-    return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-};
+
+
