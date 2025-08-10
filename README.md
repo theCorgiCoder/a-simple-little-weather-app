@@ -11,10 +11,12 @@ of mobile architecture. I am quite proud of the setup of my files and think I've
 
 ## If I had more time to spare:
 
+I would add accessibility, I didn't have time to add it to this test but I am aware of the EU accessibility act. 
+
 I would update the details screen forecasts to be pressable drop down components, I think it would look cleaner and add a bit more fun to the UX. 
 
-I think a 5-day forecast would be great to add, with an hourly option for the current day. If I want to be really complicated I'd allow the users to type in
-a zipcode or city themselves but that would need a lot more logic to work out with added validation etc.
+I think a 5-day forecast would be great to add, and if I want to be really complicated I'd allow the users to type in
+a zipcode or city themselves but that would need a lot more logic to work out with added validation etc. Being able to favorite specific cities would be fun too.
 
 ## Features
 
