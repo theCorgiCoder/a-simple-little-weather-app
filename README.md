@@ -11,7 +11,7 @@ of mobile architecture. I am quite proud of the setup of my files and think I've
 
 ## If I had more time to spare:
 
-I would add accessibility, I didn't have time to add it to this test but I am aware of the EU accessibility act. 
+I would add accessibility, I didn't have time to add it to this test, but I am aware of the EU accessibility act. 
 
 I would update the details screen forecasts to be pressable drop down components, I think it would look cleaner and add a bit more fun to the UX. 
 
@@ -117,3 +117,7 @@ Modify `src/utils/dateUtils.ts` to change which forecast times are displayed.
 MIT License - feel free to use this project for learning and development.
 
 *Built with the foot sleeping support of dog-veloper Alfie*
+
+## Since 3rd Party libraries were not allowed for this test I did install Jest for testing with, without this restriction I would of set up some basic
+## unit tests to test the components (like dateUtils and Buttons, API calls etc) to help with debugging any issues that might of arisen.
+## I did test manually by altering data to see if the proper error messages would show up, or if screens would load properly.

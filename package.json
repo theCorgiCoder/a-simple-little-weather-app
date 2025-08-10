@@ -6,11 +6,7 @@
     "start": "sigh/node_modules/.bin/expo start",
     "android": "sigh/node_modules/.bin/expo start --android",
     "ios": "sigh/node_modules/.bin/expo start --ios",
-    "web": "sigh/node_modules/.bin/expo start --web",
-    "test": "jest"
-  },
-  "jest": {
-    "preset": "react-native"
+    "web": "sigh/node_modules/.bin/expo start --web"
   },
   "dependencies": {
     "expo": "~53.0.20",
@@ -26,7 +22,6 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
-    "jest": "^30.0.5",
     "typescript": "~5.8.3"
   },
   "private": true
