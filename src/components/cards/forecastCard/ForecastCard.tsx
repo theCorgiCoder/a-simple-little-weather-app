@@ -1,7 +1,5 @@
 import {Image, Text, View} from "react-native";
 import {forecastStyles} from "./ForecastCard.style";
-import {getTimeLabel} from "../../../utils/dateUtils";
-
 
 interface ForecastWeatherProps {
     icon: string;
