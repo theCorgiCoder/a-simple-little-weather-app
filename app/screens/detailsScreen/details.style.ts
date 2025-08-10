@@ -13,7 +13,7 @@ export const detailStyles = StyleSheet.create({
         borderRadius: 10,
     },
     forecastContainer: {
-        gap: 10,
+        gap: 5,
     },
     sectionTitle: {
         fontSize: 18,

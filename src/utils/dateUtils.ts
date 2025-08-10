@@ -30,14 +30,9 @@ export const getAllTodayAndTomorrowForecast = (forecastList: WeatherForecastItem
 
 export const isToday = (timestamp: number): boolean => {
     const date = new Date(timestamp * 1000);
-    const today = new Date
+    const today = new Date();
+    return date.toDateString() === today.toDateString();
 };
-
-export const formatTime = (timestamp: number): string => {
-    const date = new Date(timestamp * 1000);
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-};
-
 export const getActualTimeLabel = (timestamp: number): string => {
     const date = new Date(timestamp * 1000);
     return date.toLocaleTimeString([], {
@@ -45,8 +40,4 @@ export const getActualTimeLabel = (timestamp: number): string => {
         minute: '2-digit',
         hour12: true
     });
-};
-
-export const getDayLabel = (timestamp: number): string => {
-    return isToday(timestamp) ? 'Today' : 'Tomorrow';
 };
