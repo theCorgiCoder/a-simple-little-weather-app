@@ -2,16 +2,11 @@
 
 A React Native weather application built with Expo, Typescript, and no other third party libraries that displays the current weather forecasts for selected cities. 
 
-## Features
-
-- Browse weather for multiple cities worldwide
-- Current weather conditions as well as the forecast for today and tomorrow.
-- Real-time weather data from OpenWeatherMap API
 
 ## Tech Stack
 
 - **React Native** with Expo
-- **Expo Router** for file-based navigation
+- **Expo & Expo Router** for quick app building in Expo Go App and file-based navigation
 - **TypeScript** for type safety
 - **OpenWeatherMap API** for weather data
 ## Getting Started
