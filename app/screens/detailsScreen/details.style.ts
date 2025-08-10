@@ -26,19 +26,6 @@ export const detailStyles = StyleSheet.create({
         backgroundColor: '#e0e0e0',
         marginVertical: 8,
     },
-    forecastItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingVertical: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#e0e0e0',
-    },
-    timeLabel: {
-        fontSize: 14,
-        fontWeight: '600',
-        color: '#333',
-    },
     error: {
         color: 'red',
         fontSize: 16,
