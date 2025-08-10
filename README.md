@@ -2,6 +2,25 @@
 
 A React Native weather application built with Expo, Typescript, and no other third party libraries that displays the current weather forecasts for selected cities. 
 
+## Challenges
+
+Honestly I was a bit rusty in React Native since I've been working primarily in Kotlin and Android development the last 7 months, so I needed to warm myself up
+before diving into the project. I also had a few tricky moments with the routing now working properly since normally I would have used React navigation before, but at the same time
+I appreciate the simplicity of expo router. Once I got going I found myself understanding what I was doing far faster than I used to thanks to my updated upderstanding
+of mobile architecture. I am quite proud of the setup of my files and think I've managed to keep the UI and business logic separate and easy to update if the app is ever scaled up.
+
+## If I had more time to spare:
+
+I would update the details screen forecasts to be pressable drop down components, I think it would look cleaner and add a bit more fun to the UX. 
+
+I think a 5-day forecast would be great to add, with an hourly option for the current day. If I want to be really complicated I'd allow the users to type in
+a zipcode or city themselves but that would need a lot more logic to work out with added validation etc.
+
+## Features
+
+- **Displays list of cities from around the world
+- **When a city is tapped a detailed screen of their current weather is displayed along with today and tomorrows forecast
+- **A refresh feature was added to the detailed screen to update the current weather information but swiping down on the screen.
 
 ## Tech Stack
 
@@ -37,6 +56,7 @@ npm install
 export const WEATHER_CONFIG = {
   API_KEY: 'your-openweathermap-api-key',
   BASE_URL: 'https://api.openweathermap.org/data/2.5',
+  ROUTE_URL: '/screens/detailsScreen/details',
   ENDPOINTS: {
     CURRENT: '/weather',
     FORECAST: '/forecast'
@@ -92,14 +112,5 @@ Modify `src/utils/dateUtils.ts` to change which forecast times are displayed.
 ## License
 
 MIT License - feel free to use this project for learning and development.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
----
 
 *Built with the foot sleeping support of dog-veloper Alfie*
