@@ -1,16 +1,17 @@
-import {View, Text, ScrollView} from "react-native";
-import {useEffect} from "react";
+import {View, Text, ScrollView, RefreshControl} from "react-native";
+import {useEffect, useState} from "react";
 import {useLocalSearchParams} from "expo-router";
 import {useWeather} from "../../../src/hooks/useWeather";
 import { getKeyTimesPerDay, isToday, getTimeLabel } from '../../../src/utils/dateUtils';
 import {getWeatherIconUrl} from '../../../src/services/apiConfig'
 
-import {LoadingSpinner} from "src/components/spinner/LoadingSpinner";
 import CurrentWeatherCard from "../../../src/components/cards/currentWeather/CurrentWeatherCard";
 import ForecastCard from "../../../src/components/cards/forecastCard/ForecastCard";
 import {detailStyles} from "./details.style";
+import LoadingSpinner from "../../../src/components/spinner/LoadingSpinner";
 
-export default function Details() {
+const Details = () => {
+    const [isRefreshing, setIsRefreshing] = useState(false);
     const {
         city,
         countryCode
@@ -39,6 +40,17 @@ export default function Details() {
         };
         loadWeatherData();
     }, [city, countryCode, fetchWeatherData]);
+
+    const handleRefresh = async () => {
+        setIsRefreshing(true);
+        try {
+            await fetchWeatherData(city, countryCode);
+        } catch (error) {
+            console.error('Failed to refresh weather data:', error);
+        } finally {
+            setIsRefreshing(false);
+        }
+    };
 
     const keyTimesForecast = forecast ? getKeyTimesPerDay(forecast.list) : [];
 
@@ -85,6 +97,14 @@ export default function Details() {
             style={detailStyles.container}
             contentContainerStyle={{ paddingBottom: 100 }}
             showsVerticalScrollIndicator={false}
+            refreshControl={
+                <RefreshControl
+                    refreshing={isRefreshing}
+                    onRefresh={handleRefresh}
+                    colors={['#007AFF']} // Android
+                    tintColor="#007AFF"  // iOS
+                />
+            }
         >
 
 
@@ -121,3 +141,5 @@ export default function Details() {
         </ScrollView>
     );
 }
+
+export default Details;

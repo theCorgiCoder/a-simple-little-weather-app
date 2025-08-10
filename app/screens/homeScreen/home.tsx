@@ -5,7 +5,8 @@ import {FEATURED_CITIES} from "../../../src/utils/constants";
 import CustomButton from "../../../src/components/buttons/CustomButton";
 import {homeStyles} from "./home.style";
 import {WEATHER_CONFIG} from "../../../src/services/apiConfig";
-import {LoadingSpinner} from "src/components/spinner/loadingSpinner";
+import LoadingSpinner from "../../../src/components/spinner/LoadingSpinner";
+
 
 const Home = () => {
     const {isLoading} = useWeather();
