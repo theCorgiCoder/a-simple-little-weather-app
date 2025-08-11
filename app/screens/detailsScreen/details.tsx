@@ -4,11 +4,11 @@ import {useLocalSearchParams} from "expo-router";
 import {useWeather} from "../../../src/hooks/useWeather";
 import { getAllTodayAndTomorrowForecast, isToday, getActualTimeLabel } from '../../../src/utils/dateUtils';
 import {getWeatherIconUrl} from '../../../src/services/apiConfig'
-
 import CurrentWeatherCard from "../../../src/components/cards/currentWeather/CurrentWeatherCard";
 import ForecastCard from "../../../src/components/cards/forecastCard/ForecastCard";
 import {detailStyles} from "./details.style";
 import LoadingSpinner from "../../../src/components/spinner/LoadingSpinner";
+import ErrorMessage from "../../../src/components/errorMessage/ErrorMessage";
 
 const Details = () => {
     const [isRefreshing, setIsRefreshing] = useState(false);
@@ -40,6 +40,7 @@ const Details = () => {
         };
         loadWeatherData();
     }, [city, countryCode, fetchWeatherData]);
+
 
     const handleRefresh = async () => {
         setIsRefreshing(true);
@@ -75,22 +76,36 @@ const Details = () => {
         ))
     );
 
-    if (isLoading) {
-        return <LoadingSpinner />;
-    }
+    const renderWeatherContent = () => (
+        <>
+            <CurrentWeatherCard
+                name={currentWeather!.name}
+                icon={getWeatherIconUrl(currentWeather!.weather[0].icon)}
+                temp={currentWeather!.main.temp}
+                windSpeed={currentWeather!.wind.speed}
+                humidity={currentWeather!.main.humidity}
+                description={currentWeather!.weather[0].description}
+            />
 
+            {todayForecast.length > 0 && (
+                <View style={detailStyles.forecastSection}>
+                    <Text style={detailStyles.sectionTitle}>Today</Text>
+                    <View style={detailStyles.forecastContainer}>
+                        {renderForecastItems(todayForecast)}
+                    </View>
+                </View>
+            )}
 
-    if (error) {
-        return (
-            <Text>Error: {error}</Text>
-        )
-    }
-
-    if (!currentWeather) {
-        return (
-            <Text>No weather data available.</Text>
-        )
-    }
+            {tomorrowForecast.length > 0 && (
+                <View style={detailStyles.forecastSection}>
+                    <Text style={detailStyles.sectionTitle}>Tomorrow</Text>
+                    <View style={detailStyles.forecastContainer}>
+                        {renderForecastItems(tomorrowForecast)}
+                    </View>
+                </View>
+            )}
+        </>
+    );
 
     return (
         <ScrollView
@@ -101,45 +116,29 @@ const Details = () => {
                 <RefreshControl
                     refreshing={isRefreshing}
                     onRefresh={handleRefresh}
-                    colors={['#007AFF']} // Android
-                    tintColor="#007AFF"  // iOS
+                    colors={['#007AFF']}
+                    tintColor="#007AFF"
                 />
             }
         >
-
-
-            {/* Current Weather */}
-            <CurrentWeatherCard
-                name={currentWeather.name}
-                icon={getWeatherIconUrl(currentWeather.weather[0].icon)}
-                temp={currentWeather.main.temp}
-                windSpeed={currentWeather.wind.speed}
-                humidity={currentWeather.main.humidity}
-                description={currentWeather.weather[0].description}
-            />
-
-            {/* Today's Forecast */}
-            {todayForecast.length > 0 && (
-                <View style={detailStyles.forecastSection}>
-                    <Text style={detailStyles.sectionTitle}>Today</Text>
-                    <View style={detailStyles.forecastContainer}>
-                        {renderForecastItems(todayForecast)}
-                    </View>
+            {isLoading ? (
+                <LoadingSpinner />
+            ) : error ? (
+                <ErrorMessage
+                    error={error}
+                />
+            ) : currentWeather ? (
+                renderWeatherContent()
+            ) : (
+                <View style={detailStyles.centerContainer}>
+                    <Text style={detailStyles.noDataText}>
+                        {city ? `No weather data found for ${city}` : 'Select a city to view weather'}
+                    </Text>
                 </View>
             )}
-
-            {/* Tomorrow's Forecast */}
-            {tomorrowForecast.length > 0 && (
-                <View style={detailStyles.forecastSection}>
-                    <Text style={detailStyles.sectionTitle}>Tomorrow</Text>
-                    <View style={detailStyles.forecastContainer}>
-                        {renderForecastItems(tomorrowForecast)}
-                    </View>
-                </View>
-            )}
-
         </ScrollView>
     );
 }
+
 
 export default Details;

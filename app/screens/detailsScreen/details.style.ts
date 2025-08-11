@@ -29,4 +29,17 @@ export const detailStyles = StyleSheet.create({
         color: 'red',
         fontSize: 16,
     },
+    centerContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 40,
+    },
+
+    noDataText: {
+        fontSize: 16,
+        color: '#666',
+        textAlign: 'center',
+        fontWeight: '500',
+    },
 });

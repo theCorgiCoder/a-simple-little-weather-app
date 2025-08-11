@@ -1,105 +1,53 @@
-export interface WeatherAPIError {
-    cod: string | number;
-    message: string;
-}
+import {WeatherErrorItem, WeatherErrorType} from "../types/error";
 
-export enum WeatherErrorType {
-    API_LIMIT = 'API_LIMIT',
-    INTERNAL_SERVER_ERROR = 'INTERNAL_SERVER_ERROR',
-    MISSING_API_KEY = 'MISSING_API_KEY',
-    NO_DATA_FOUND = 'NO_DATA_FOUND',
-    UNKNOWN_ERROR = 'UNKNOWN_ERROR',
-    CANT_LOAD_SCREEN = 'CANT_LOAD_SCREEN'
-}
+export function mapWeatherErrorResponse(error: WeatherErrorItem, statusCode?: number) {
+    switch (statusCode) {
+        case 401:
+            return {
+                type: WeatherErrorType.MISSING_API_KEY,
+                cod: statusCode,
+                message: "Unauthorized",
+                userMessage: "Your API key is missing or not valid for this service. Make sure you’ve added the correct API key to your request, and that the key has access to the weather data you’re trying to use."
+            };
 
-export interface WeatherErrorDetails {
-    type: WeatherErrorType;
-    message: string;
-    userMessage: string;
-    canRetry: boolean;
-}
+        case 404:
+            return {
+                type: WeatherErrorType.NO_DATA_FOUND,
+                cod: statusCode,
+                message: "Data not found.",
+                userMessage: "We couldn’t find what you were looking for. This could be a typo in the city name or location, or the data might not exist.",
+            };
 
-export const weatherErrorResponse = (error: any): WeatherErrorDetails => {
-    const statusCode = error?.response?.status || error?.cod;
+        case 429:
+            return {
+                type: WeatherErrorType.API_LIMIT_REACHED,
+                cod: statusCode,
+                message: "Request limit reached for OpenWeather API.",
+                userMessage: "Too many requests have been made! Open Weather API is kindly telling us to slow down and try again later."
+            };
 
-    if (statusCode === 401) {
-        return {
-            type: WeatherErrorType.MISSING_API_KEY,
-            message: 'Unauthorized: Invalid API key.',
-            userMessage: 'Invalid API key. Please check configuration.',
-            canRetry: false
-        };
-    }
+        case 500:
+            return {
+                type: WeatherErrorType.UNKNOWN_ERROR,
+                cod: statusCode,
+                message: "Unknown error occurred.",
+                userMessage: "The weather service is having some issues right now. It’s not you — it’s them. Try again later.",
+            }
 
-    if (statusCode  === 429) {
-        return {
-            type: WeatherErrorType.API_LIMIT,
-            message: 'API request limit exceeded.',
-            userMessage: 'Daily API request limit reached. Try again later.',
-            canRetry: false
-        }
-    }
-
-    if (statusCode  === 500) {
-        return {
-            type: WeatherErrorType.INTERNAL_SERVER_ERROR,
-            message: `Internal Server error: ${statusCode}`,
-            userMessage: 'Weather service is temporarily down. Try again later.',
-            canRetry: true
-        }
-    }
-
-    if (statusCode  === 404 || error?.message?.includes('Not Found')) {
-        return {
-            type: WeatherErrorType.NO_DATA_FOUND,
-            message: 'Data not found.',
-            userMessage: 'No weather data found for this location.',
-            canRetry: true
-        }
-    }
-
-    if (error?.message?.includes('fetch') || error?.message?.includes('network')) {
-        return {
-            type: WeatherErrorType.CANT_LOAD_SCREEN,
-            message: error.message || 'Network error',
-            userMessage: 'Cannot load weather data. Check your internet connection.',
-            canRetry: true
-        };
-    }
-
-    return {
-        type: WeatherErrorType.UNKNOWN_ERROR,
-        message: error?.message || 'Unknown error occurred',
-        userMessage: 'Something went wrong. Please try again.',
-        canRetry: true
-    };
-}
-
-export const shouldShowRetryButton = (errorType: WeatherErrorType): boolean => {
-    return [
-        WeatherErrorType.NO_DATA_FOUND,
-        WeatherErrorType.API_LIMIT,
-        WeatherErrorType.INTERNAL_SERVER_ERROR,
-        WeatherErrorType.NO_DATA_FOUND,
-        WeatherErrorType.CANT_LOAD_SCREEN,
-        WeatherErrorType.UNKNOWN_ERROR
-    ].includes(errorType);
-};
-
-export const getErrorTitle = (errorType: WeatherErrorType): string => {
-    switch (errorType) {
-        case WeatherErrorType.API_LIMIT:
-            return 'Daily API Limit Reached';
-        case WeatherErrorType.INTERNAL_SERVER_ERROR:
-            return 'Service Unavailable';
-        case WeatherErrorType.MISSING_API_KEY:
-            return 'Configuration Error';
-        case WeatherErrorType.NO_DATA_FOUND:
-            return 'No Data Available';
-        case WeatherErrorType.CANT_LOAD_SCREEN:
-            return 'Connection Error';
-        case WeatherErrorType.UNKNOWN_ERROR:
         default:
-            return 'Something Went Wrong';
+            if (!statusCode) {
+                return {
+                    type: WeatherErrorType.NETWORK_ERROR,
+                    cod: "NETWORK_ERROR",
+                    message: "Network connection error.",
+                    userMessage: "There appears to be an issue with your Network connection. Please try again later.",
+                };
+            }
+            return {
+                type: WeatherErrorType.UNKNOWN_ERROR,
+                cod: statusCode ?? "UNKNOWN",
+                message: error?.message || "Unexpected error from API.",
+                userMessage: "Something unexpected happened. Please try again."
+            };
     }
-};
+}

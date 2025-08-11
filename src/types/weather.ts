@@ -1,3 +1,4 @@
+
 export interface CurrentWeatherResponse {
     main: {
         temp: number;
@@ -34,3 +35,4 @@ export interface WeatherForecastItem {
 export interface WeatherForecastResponse {
     list: WeatherForecastItem[];
 }
+
