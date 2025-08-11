@@ -5,13 +5,13 @@ A React Native weather application built with Expo, Typescript, and no other thi
 ## Challenges
 
 Honestly I was a bit rusty in React Native since I've been working primarily in Kotlin and Android development the last 7 months, so I needed to warm myself up
-before diving into the project. I also had a few tricky moments with the routing now working properly since normally I would have used React navigation before, but at the same time
-I appreciate the simplicity of expo router. Once I got going I found myself understanding what I was doing far faster than I used to thanks to my updated upderstanding
-of mobile architecture. I am quite proud of the setup of my files and think I've managed to keep the UI and business logic separate and easy to update if the app is ever scaled up.
+before diving into the project. Error catching was a bit of a challenge for me, and there is one error I keep getting
+on the home screen about Text strings must be rendered within a <Text> component, but as far as I can tell.. they are? I don't have enough time to problem solve this one
+but I am aware of it.
 
 ## If I had more time to spare:
 
-I would add accessibility, I didn't have time to add it to this test but I am aware of the EU accessibility act. 
+I would add accessibility, I didn't have time to add it to this test, but I am aware of the EU accessibility act. 
 
 I would update the details screen forecasts to be pressable drop down components, I think it would look cleaner and add a bit more fun to the UX. 
 
@@ -31,6 +31,8 @@ a zipcode or city themselves but that would need a lot more logic to work out wi
 - **Expo Go App** - if you want to test the application that way, otherwise use an emulator or physical device in Android Studio or Xcode(ios)
 - **TypeScript** for type safety
 - **OpenWeatherMap API** for weather data
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -66,7 +68,7 @@ export const WEATHER_CONFIG = {
   }
 };
 ```
-
+##IMPORTANT: NEED AN API KEY FOR IT TO WORK, SEE INSTRUCTIONS BELOW!
 4. Start the development server:
 ```bash
 npx expo start
@@ -117,3 +119,7 @@ Modify `src/utils/dateUtils.ts` to change which forecast times are displayed.
 MIT License - feel free to use this project for learning and development.
 
 *Built with the foot sleeping support of dog-veloper Alfie*
+
+## Since 3rd Party libraries were not allowed for this test I did not install Jest for testing with, without this restriction I would of set up some basic
+## unit tests to test the components (like dateUtils and Buttons, API calls etc) to help with debugging any issues that might have arisen.
+## I did test manually by altering data to see if the proper error messages would show up, or if screens would load properly.

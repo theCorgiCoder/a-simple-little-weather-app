@@ -25,8 +25,4 @@ export const detailStyles = StyleSheet.create({
         backgroundColor: '#3A6D8C',
         marginVertical: 8,
     },
-    error: {
-        color: 'red',
-        fontSize: 16,
-    },
 });
