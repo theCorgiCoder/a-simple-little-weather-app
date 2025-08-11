@@ -8,10 +8,11 @@ interface ErrorMessageProps {
 
 export default function ErrorMessage({ error}: ErrorMessageProps) {
 
-
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Error: {error.cod}</Text>
+            <Text style={styles.title}>
+                {error.cod ? `: ${error.cod}` : ''}
+            </Text>
             <Text style={styles.errorCode}>{error.message}</Text>
             <Text style={styles.message}>{error.userMessage}</Text>
         </View>

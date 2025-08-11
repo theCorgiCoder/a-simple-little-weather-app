@@ -5,9 +5,9 @@ A React Native weather application built with Expo, Typescript, and no other thi
 ## Challenges
 
 Honestly I was a bit rusty in React Native since I've been working primarily in Kotlin and Android development the last 7 months, so I needed to warm myself up
-before diving into the project. I also had a few tricky moments with the routing now working properly since normally I would have used React navigation before, but at the same time
-I appreciate the simplicity of expo router. Once I got going I found myself understanding what I was doing far faster than I used to thanks to my updated understanding
-of mobile architecture. I am quite proud of the setup of my files and think I've managed to keep the UI and business logic separate and easy to update if the app is ever scaled up.
+before diving into the project. Error catching was a bit of a challenge for me, and there is one error I keep getting
+on the home screen about Text strings must be rendered within a <Text> component, but as far as I can tell.. they are? I don't have enough time to problem solve this one
+but I am aware of it.
 
 ## If I had more time to spare:
 

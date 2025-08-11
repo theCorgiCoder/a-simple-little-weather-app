@@ -120,8 +120,10 @@ const Details = () => {
                 <ErrorMessage
                     error={error}
                 />
-            ) : (
+            ) : currentWeather ? (
                 renderWeatherContent()
+            ) : (
+                <LoadingSpinner />
             )}
         </ScrollView>
     );
