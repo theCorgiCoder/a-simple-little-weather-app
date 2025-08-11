@@ -51,3 +51,34 @@ export function mapWeatherErrorResponse(error: WeatherErrorItem, statusCode?: nu
             };
     }
 }
+
+export function mapGeneralErrorResponse(error: unknown, errorType?: WeatherErrorType, NAVIGATION_ERROR?: WeatherErrorType): WeatherErrorItem {
+    switch (errorType) {
+        case WeatherErrorType.NAVIGATION_ERROR:
+            return {
+                type: WeatherErrorType.NAVIGATION_ERROR,
+                message: 'Navigation failed',
+                userMessage: 'Unable to load the requested page. Please try again.',
+            };
+
+        case WeatherErrorType.DATA_VALIDATION_ERROR:
+            return {
+                type: WeatherErrorType.DATA_VALIDATION_ERROR,
+                message: 'Invalid data',
+                userMessage: 'The selected city data is invalid. Please try a different city.',
+            };
+
+        default:
+            break;
+    }
+    return mapWeatherErrorResponse(error as WeatherErrorItem);
+}
+
+export function createNavigationError(customMessage?: string): WeatherErrorItem {
+    return mapGeneralErrorResponse(null, undefined, WeatherErrorType.NAVIGATION_ERROR);
+}
+
+export function createValidationError(customMessage?: string): WeatherErrorItem {
+    const baseError = mapGeneralErrorResponse(null, undefined, WeatherErrorType.DATA_VALIDATION_ERROR);
+    return customMessage ? { ...baseError, userMessage: customMessage } : baseError;
+}

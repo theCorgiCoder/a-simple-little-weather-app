@@ -31,11 +31,7 @@ const Details = () => {
     useEffect(() => {
         const loadWeatherData = async () => {
             if (city) {
-                try {
                     await fetchWeatherData(city, countryCode);
-                } catch (error) {
-                    console.error('Failed to fetch weather data:', error);
-                }
             }
         };
         loadWeatherData();
@@ -43,14 +39,11 @@ const Details = () => {
 
 
     const handleRefresh = async () => {
+        if (!city) return;
+
         setIsRefreshing(true);
-        try {
-            await fetchWeatherData(city, countryCode);
-        } catch (error) {
-            console.error('Failed to refresh weather data:', error);
-        } finally {
-            setIsRefreshing(false);
-        }
+        await fetchWeatherData(city, countryCode);
+        setIsRefreshing(false);
     };
 
     // Get ALL forecast times for today and tomorrow
@@ -127,14 +120,8 @@ const Details = () => {
                 <ErrorMessage
                     error={error}
                 />
-            ) : currentWeather ? (
-                renderWeatherContent()
             ) : (
-                <View style={detailStyles.centerContainer}>
-                    <Text style={detailStyles.noDataText}>
-                        {city ? `No weather data found for ${city}` : 'Select a city to view weather'}
-                    </Text>
-                </View>
+                renderWeatherContent()
             )}
         </ScrollView>
     );

@@ -25,21 +25,4 @@ export const detailStyles = StyleSheet.create({
         backgroundColor: '#3A6D8C',
         marginVertical: 8,
     },
-    error: {
-        color: 'red',
-        fontSize: 16,
-    },
-    centerContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 40,
-    },
-
-    noDataText: {
-        fontSize: 16,
-        color: '#666',
-        textAlign: 'center',
-        fontWeight: '500',
-    },
 });
