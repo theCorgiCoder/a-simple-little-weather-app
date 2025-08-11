@@ -74,6 +74,8 @@ export function mapGeneralErrorResponse(error: unknown, errorType?: WeatherError
     return mapWeatherErrorResponse(error as WeatherErrorItem);
 }
 
+/**
+ * The home screen doesn't need to fetch any data so it requires a bit of tweaking for it's error catching**/
 export function createNavigationError(customMessage?: string): WeatherErrorItem {
     return mapGeneralErrorResponse(null, undefined, WeatherErrorType.NAVIGATION_ERROR);
 }

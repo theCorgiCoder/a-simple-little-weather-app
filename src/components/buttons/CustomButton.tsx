@@ -32,8 +32,6 @@ const styles = StyleSheet.create({
         borderRightColor: '#007AFF',
         borderRadius: 8,
         marginVertical: 4,
-
-        // Shadow for iOS
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -41,8 +39,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.1,
         shadowRadius: 2,
-
-        // Shadow for Android
         elevation: 2,
     },
     buttonText: {
