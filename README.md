@@ -1,6 +1,13 @@
 # A Simple Little Weather App
 
-A React Native weather application built with Expo, Typescript, and no other third party libraries that displays the current weather forecasts for selected cities. 
+A React Native weather application built with Expo, Typescript, and no other third party libraries that displays the current weather forecasts for selected cities.
+
+## Requirements:
+
+- No third party libaries
+- Use of React components and Typescript (React native in this case)
+- Must display list of cities, when pressed, display more detailed information on cities weather including (degrees, wind speed, humidity, weather icon, and weather description)
+- Along with current weather display forecast for today and tomorrow.
 
 ## Challenges
 
